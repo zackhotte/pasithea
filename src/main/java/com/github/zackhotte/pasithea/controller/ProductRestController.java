@@ -29,6 +29,11 @@ public class ProductRestController {
         this.shoppingCartRepository = shoppingCartRepository;
     }
 
+    @GetMapping
+    public List<Book> getAllBooks() {
+        return bookRepository.findAll();
+    }
+
     @GetMapping(path = "/{productId}")
     public Book productInformation(@PathVariable Long productId) {
         return bookRepository.findOne(productId);
