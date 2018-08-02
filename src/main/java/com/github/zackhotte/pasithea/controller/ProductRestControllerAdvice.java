@@ -18,7 +18,7 @@ public class ProductRestControllerAdvice {
     @ResponseStatus(HttpStatus.FORBIDDEN)
     protected ResponseEntity<Response> outOfStockExceptionHandler(OutOfStockException e) {
         return ResponseEntity.status(HttpStatus.FORBIDDEN).body(
-                new Response("Out of Stock", e.getMessage(), 403)
+                Response.error("Out of Stock", e.getMessage(), 403)
         );
     }
 
@@ -26,7 +26,7 @@ public class ProductRestControllerAdvice {
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     protected ResponseEntity<Response> ioExceptionHandler(IOException e) {
         return ResponseEntity.badRequest().body(
-                new Response("Error parsing the request body", e.getMessage(), 400)
+                Response.error("Error parsing the request body", e.getMessage(), 400)
         );
     }
 
@@ -34,7 +34,7 @@ public class ProductRestControllerAdvice {
     @ResponseStatus(HttpStatus.NOT_FOUND)
     protected ResponseEntity<Response> noSuchElementExceptionHandler(NoSuchElementException e) {
         return new ResponseEntity<>(
-                new Response("Item id not found", e.getMessage(), 404),
+                Response.error("Item id not found", e.getMessage(), 404),
                 HttpStatus.NOT_FOUND
         );
     }
