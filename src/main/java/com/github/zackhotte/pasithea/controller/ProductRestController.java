@@ -1,5 +1,8 @@
 package com.github.zackhotte.pasithea.controller;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ArrayNode;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.github.zackhotte.pasithea.model.AuthorRepository;
 import com.github.zackhotte.pasithea.model.Book;
 import com.github.zackhotte.pasithea.model.BookRepository;
@@ -42,8 +45,17 @@ public class ProductRestController {
     }
 
     @GetMapping
-    public List<Book> getAllBooks() {
-        return bookRepository.findAll();
+    public ArrayNode getAllBooks() {
+        ObjectMapper mapper = new ObjectMapper();
+        ArrayNode node = mapper.createArrayNode();
+        bookRepository.findAll().forEach(book -> {
+            ObjectNode object = mapper.createObjectNode();
+            object.put("id", book.getId());
+            object.put("name", book.getName());
+            object.put("category", "BOOK");
+            node.add(object);
+        });
+        return node;
     }
 
     @GetMapping(path = "/{productId}")
