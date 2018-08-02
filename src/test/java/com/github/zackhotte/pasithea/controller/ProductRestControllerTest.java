@@ -145,4 +145,31 @@ public class ProductRestControllerTest {
                 .andExpect(jsonPath("$.message", is("Out of Stock")));
     }
 
+    @Test
+    public void test5ThatErrorIsThrownIfItemIdDoesNotExist() throws Exception {
+        String body = "{\"id\": \"200\"}";
+        mockMvc.perform(post("/products/removefromcart")
+                .contentType(MediaType.APPLICATION_JSON_VALUE)
+                .content(body))
+                .andExpect(status().isNotFound())
+                .andExpect(jsonPath("$.error", is("Could not find cart item id 200")))
+                .andExpect(jsonPath("$.code", is(404)));
+    }
+
+    @Test
+    public void test6ThatItemIsRemoved() throws Exception {
+        String body = "{\"id\": \"1\"}";
+        mockMvc.perform(post("/products/removefromcart")
+                .contentType(MediaType.APPLICATION_JSON_VALUE)
+                .content(body))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.message", is("Item id 1 has been removed from the shopping cart")));
+
+        mockMvc.perform(get("/products/shoppingcart"))
+                .andExpect(content().contentType(contentType))
+                .andExpect(status().isOk())
+                .andExpect(content().string("[]"));
+    }
+
+
 }

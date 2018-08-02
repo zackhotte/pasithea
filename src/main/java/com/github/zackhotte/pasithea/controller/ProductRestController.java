@@ -22,6 +22,8 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
 import java.util.Map;
+import java.util.NoSuchElementException;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/products")
@@ -73,6 +75,27 @@ public class ProductRestController {
         String origin = ServletUriComponentsBuilder.fromContextPath(request).toUriString();
         URI uri = new URI(origin + "/products/shoppingcart/" + cartItem.getId());
         return ResponseEntity.created(uri).body(Response.ok("Item added to your shopping cart: " + uri));
+    }
+
+    @PostMapping(path = "/removefromcart", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Response> removeFromCart(@RequestBody Map<String, Long> product) {
+        List<ShoppingCart> shoppingCart = shoppingCartRepository.findAll();
+        if (shoppingCart.isEmpty()) {
+            throw new NoSuchElementException("Shopping cart is empty");
+        }
+
+        Optional<ShoppingCart> targetItem = shoppingCart.stream()
+                .filter(item -> item.getBook().getId().equals(product.get("id")))
+                .findFirst();
+
+        if (targetItem.isPresent()) {
+            Long cartItemId = targetItem.get().getId();
+            shoppingCartRepository.delete(cartItemId);
+            return ResponseEntity.ok().body(Response.ok("Item id " + cartItemId + " has been removed from the shopping cart"));
+        }
+
+
+        throw new NoSuchElementException("Could not find cart item id " + product.get("id"));
     }
 
 }
