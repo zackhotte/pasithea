@@ -6,9 +6,12 @@ import com.github.zackhotte.pasithea.model.AuthorRepository;
 import com.github.zackhotte.pasithea.model.Book;
 import com.github.zackhotte.pasithea.model.BookRepository;
 import com.github.zackhotte.pasithea.model.Format;
+import com.github.zackhotte.pasithea.model.ShoppingCartRepository;
 import org.junit.Before;
+import org.junit.FixMethodOrder;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.junit.runners.MethodSorters;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
@@ -23,6 +26,7 @@ import java.util.Date;
 
 import static org.hamcrest.Matchers.is;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -30,6 +34,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = Application.class)
 @WebAppConfiguration
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class ProductRestControllerTest {
 
     private MockMvc mockMvc;
@@ -43,9 +48,12 @@ public class ProductRestControllerTest {
     private BookRepository bookRepository;
     @Autowired
     private AuthorRepository authorRepository;
+    @Autowired
+    private ShoppingCartRepository shoppingCartRepository;
 
     @Before
-    public void setup() throws Exception {
+    public void setUp() throws Exception {
+        System.out.println("Setup");
         mockMvc = MockMvcBuilders.webAppContextSetup(webApplicationContext).build();
 
         Author author1 = authorRepository.save(new Author("Michael", "Lewis"));
@@ -86,7 +94,7 @@ public class ProductRestControllerTest {
     }
 
     @Test
-    public void productInformation() throws Exception {
+    public void test1ProductInformation() throws Exception {
         mockMvc.perform(get("/products/1"))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(contentType))
@@ -103,4 +111,38 @@ public class ProductRestControllerTest {
                 .andExpect(jsonPath("$.quantity", is(0)))
                 .andExpect(jsonPath("$.inStock", is(false)));
     }
+
+    @Test
+    public void test2ShoppingCartStartsEmpty() throws Exception {
+        mockMvc.perform(get("/products/shoppingcart"))
+                .andExpect(status().isOk())
+                .andExpect(content().contentType(contentType))
+                .andExpect(content().string("[]"));
+    }
+
+    @Test
+    public void test3ThatItemHasBeenAddedToShoppingCart() throws Exception {
+        String body = "{\"id\": \"1\", \"quantity\": \"2\"}";
+        // Book book = bookRepository.findOne(1L);
+        mockMvc.perform(post("/products/addtocart")
+                .contentType(MediaType.APPLICATION_JSON_VALUE)
+                .content(body))
+                .andExpect(status().isCreated());
+
+        mockMvc.perform(get("/products/shoppingcart/1"))
+                .andExpect(status().isOk())
+                .andExpect(content().contentType(contentType))
+                .andExpect(jsonPath("$.id", is(1)));
+    }
+
+    @Test
+    public void test4ThatOutOfStockErrorIsThrown() throws Exception {
+        String body = "{\"id\": \"2\", \"quantity\": \"5\"}";
+        mockMvc.perform(post("/products/addtocart")
+                .contentType(MediaType.APPLICATION_JSON_VALUE)
+                .content(body))
+                .andExpect(status().isForbidden())
+                .andExpect(jsonPath("$.message", is("Out of Stock")));
+    }
+
 }
