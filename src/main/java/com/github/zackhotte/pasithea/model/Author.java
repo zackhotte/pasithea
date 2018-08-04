@@ -21,12 +21,15 @@ public class Author {
     }
 
     public Author(String firstName, String lastName) {
-        this.firstName = capitlize(firstName);
-        this.lastName = capitlize(lastName);
+        this.firstName = capitalize(firstName);
+        this.lastName = capitalize(lastName);
         this.fullName = this.firstName + " " + this.lastName;
     }
 
-    private String capitlize(String name) {
+    private String capitalize(String name) {
+        if (name.equals("")) {
+            return name;
+        }
         return name.toLowerCase().substring(0, 1).toUpperCase() + name.toLowerCase().substring(1);
     }
 
