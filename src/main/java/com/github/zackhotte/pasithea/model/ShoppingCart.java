@@ -17,6 +17,8 @@ public class ShoppingCart {
     @ManyToOne
     private Book book;
     private Integer quantity;
+    private Float unitPrice;
+    private Float totalPrice;
     private Boolean isOrdered;
     private Boolean hasShipped;
     private Boolean hasBeenDelivered;
@@ -27,6 +29,8 @@ public class ShoppingCart {
     public ShoppingCart(Book book, Integer quantity) {
         this.book = book;
         this.quantity = quantity;
+        this.unitPrice = book.getPrice();
+        this.totalPrice = this.quantity * this.unitPrice;
         this.isOrdered = false;
         this.hasShipped = false;
         this.hasBeenDelivered = false;
@@ -42,6 +46,14 @@ public class ShoppingCart {
 
     public Integer getQuantity() {
         return quantity;
+    }
+
+    public Float getUnitPrice() {
+        return unitPrice;
+    }
+
+    public Float getTotalPrice() {
+        return totalPrice;
     }
 
     public Boolean getOrdered() {

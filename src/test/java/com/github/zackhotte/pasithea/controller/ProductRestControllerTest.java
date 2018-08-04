@@ -129,5 +129,21 @@ public class ProductRestControllerTest {
                 .andExpect(content().string("[]"));
     }
 
+    @Test
+    public void test7ThatTotalPriceWasCorrectlyCalculated() throws Exception {
+        String body = "{\"id\": \"55\", \"quantity\": \"5\"}";
+        mockMvc.perform(post("/products/addtocart")
+                .contentType(MediaType.APPLICATION_JSON_VALUE)
+                .content(body))
+                .andExpect(status().isCreated());
+
+        mockMvc.perform(get("/products/shoppingcart/2"))
+                .andExpect(status().isOk())
+                .andExpect(content().contentType(contentType))
+                .andExpect(jsonPath("$.id", is(2)))
+                .andExpect(jsonPath("$.unitPrice", is(15.21)))
+                .andExpect(jsonPath("$.quantity", is(5)))
+                .andExpect(jsonPath("$.totalPrice", is(76.05)));
+    }
 
 }
