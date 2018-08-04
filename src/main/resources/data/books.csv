@@ -1,0 +1,101 @@
+books_count,isbn,authors,first_name,last_name,full_name,original_publication_year,original_title,language_code,average_rating,image_url,quantity,price
+272,439023483,Suzanne Collins,Suzanne ,Collins,Suzanne Collins,2008,The Hunger Games,eng,4.34,https://images.gr-assets.com/books/1447303603m/2767052.jpg,290,1.53
+491,439554934,"J.K. Rowling, Mary GrandPré",J.K. ,Rowling,J.K. Rowling,1997,Harry Potter and the Philosopher's Stone,eng,4.44,https://images.gr-assets.com/books/1474154022m/3.jpg,124,4.03
+226,316015849,Stephenie Meyer,Stephenie ,Meyer,Stephenie Meyer,2005,Twilight,en-US,3.57,https://images.gr-assets.com/books/1361039443m/41865.jpg,87,21.26
+487,61120081,Harper Lee,Harper ,Lee,Harper Lee,1960,To Kill a Mockingbird,eng,4.25,https://images.gr-assets.com/books/1361975680m/2657.jpg,120,6.47
+1356,743273567,F. Scott Fitzgerald,F. Scott,Scott Fitzgerald,F. ScottScott Fitzgerald,1925,The Great Gatsby,eng,3.89,https://images.gr-assets.com/books/1490528560m/4671.jpg,438,8.78
+226,525478817,John Green,John ,Green,John Green,2012,The Fault in Our Stars,eng,4.26,https://images.gr-assets.com/books/1360206420m/11870085.jpg,471,12.41
+969,618260307,J.R.R. Tolkien,J.R.R. ,Tolkien,J.R.R. Tolkien,1937,The Hobbit or There and Back Again,en-US,4.25,https://images.gr-assets.com/books/1372847500m/5907.jpg,484,1.05
+360,316769177,J.D. Salinger,J.D. ,Salinger,J.D. Salinger,1951,The Catcher in the Rye,eng,3.79,https://images.gr-assets.com/books/1398034300m/5107.jpg,114,28.97
+311,1416524797,Dan Brown,Dan ,Brown,Dan Brown,2000,Angels & Demons ,en-CA,3.85,https://images.gr-assets.com/books/1303390735m/960.jpg,130,28.74
+3455,679783261,Jane Austen,Jane ,Austen,Jane Austen,1813,Pride and Prejudice,eng,4.24,https://images.gr-assets.com/books/1320399351m/1885.jpg,26,21.99
+283,1594480001,Khaled Hosseini,Khaled ,Hosseini,Khaled Hosseini,2003,The Kite Runner ,eng,4.26,https://images.gr-assets.com/books/1484565687m/77203.jpg,422,12.54
+210,62024035,Veronica Roth,Veronica ,Roth,Veronica Roth,2011,Divergent,eng,4.24,https://images.gr-assets.com/books/1328559506m/13335037.jpg,436,24.89
+995,451524934,"George Orwell, Erich Fromm, Celâl Üster",George ,Orwell,George Orwell,1949,Nineteen Eighty-Four,eng,4.14,https://images.gr-assets.com/books/1348990566m/5470.jpg,487,19.13
+896,452284244,George Orwell,George ,Orwell,George Orwell,1945,Animal Farm: A Fairy Story,eng,3.87,https://images.gr-assets.com/books/1424037542m/7613.jpg,357,26.47
+710,553296981,"Anne Frank, Eleanor Roosevelt, B.M. Mooyaart-Doubleday",Anne ,Frank,Anne Frank,1947,Het Achterhuis: Dagboekbrieven 14 juni 1942 - 1 augustus 1944,eng,4.1,https://images.gr-assets.com/books/1358276407m/48855.jpg,83,15.48
+274,307269752,"Stieg Larsson, Reg Keeland",Stieg ,Larsson,Stieg Larsson,2005,Män som hatar kvinnor,eng,4.11,https://images.gr-assets.com/books/1327868566m/2429135.jpg,26,24.04
+201,439023491,Suzanne Collins,Suzanne ,Collins,Suzanne Collins,2009,Catching Fire,eng,4.3,https://images.gr-assets.com/books/1358273780m/6148028.jpg,260,27.45
+376,043965548X,"J.K. Rowling, Mary GrandPré, Rufus Beck",J.K. ,Rowling,J.K. Rowling,1999,Harry Potter and the Prisoner of Azkaban,eng,4.53,https://images.gr-assets.com/books/1499277281m/5.jpg,56,16.29
+566,618346252,J.R.R. Tolkien,J.R.R. ,Tolkien,J.R.R. Tolkien,1954,The Fellowship of the Ring,eng,4.34,https://images.gr-assets.com/books/1298411339m/34.jpg,405,5.57
+239,439023513,Suzanne Collins,Suzanne ,Collins,Suzanne Collins,2010,Mockingjay,eng,4.03,https://images.gr-assets.com/books/1358275419m/7260188.jpg,47,15.24
+307,439358078,"J.K. Rowling, Mary GrandPré",J.K. ,Rowling,J.K. Rowling,2003,Harry Potter and the Order of the Phoenix,eng,4.46,https://images.gr-assets.com/books/1387141547m/2.jpg,134,6.41
+183,316166685,Alice Sebold,Alice ,Sebold,Alice Sebold,2002,The Lovely Bones,eng,3.77,https://images.gr-assets.com/books/1457810586m/12232938.jpg,285,29.2
+398,439064864,"J.K. Rowling, Mary GrandPré",J.K. ,Rowling,J.K. Rowling,1998,Harry Potter and the Chamber of Secrets,eng,4.37,https://images.gr-assets.com/books/1474169725m/15881.jpg,194,5.02
+332,439139600,"J.K. Rowling, Mary GrandPré",J.K. ,Rowling,J.K. Rowling,2000,Harry Potter and the Goblet of Fire,eng,4.53,https://images.gr-assets.com/books/1361482611m/6.jpg,406,28.02
+263,545010225,"J.K. Rowling, Mary GrandPré",J.K. ,Rowling,J.K. Rowling,2007,Harry Potter and the Deathly Hallows,eng,4.61,https://images.gr-assets.com/books/1474171184m/136251.jpg,77,20.1
+350,307277674,Dan Brown,Dan ,Brown,Dan Brown,2003,The Da Vinci Code,eng,3.79,https://images.gr-assets.com/books/1303252999m/968.jpg,21,1.92
+275,439785960,"J.K. Rowling, Mary GrandPré",J.K. ,Rowling,J.K. Rowling,2005,Harry Potter and the Half-Blood Prince,eng,4.54,https://images.gr-assets.com/books/1361039191m/1.jpg,211,8.26
+458,140283331,William Golding,William ,Golding,William Golding,1954,Lord of the Flies ,eng,3.64,https://images.gr-assets.com/books/1327869409m/7624.jpg,27,13.16
+1937,743477111,"William Shakespeare, Robert           Jackson",William ,Shakespeare,William Shakespeare,1595,An Excellent conceited Tragedie of Romeo and Juliet,eng,3.73,https://images.gr-assets.com/books/1327872146m/18135.jpg,368,19.73
+196,297859382,Gillian Flynn,Gillian ,Flynn,Gillian Flynn,2012,Gone Girl,eng,4.03,https://images.gr-assets.com/books/1339602131m/8442457.jpg,353,23.64
+183,399155341,Kathryn Stockett,Kathryn ,Stockett,Kathryn Stockett,2009,The Help,eng,4.45,https://images.gr-assets.com/books/1346100365m/4667024.jpg,308,19.21
+373,142000671,John Steinbeck,John ,Steinbeck,John Steinbeck,1937,Of Mice and Men ,eng,3.84,https://images.gr-assets.com/books/1437235233m/890.jpg,321,6.24
+220,739326228,Arthur Golden,Arthur ,Golden,Arthur Golden,1997,Memoirs of a Geisha,eng,4.08,https://s.gr-assets.com/assets/nophoto/book/111x148-bcc042a9c91a29c1d680899eff700a03.png,242,22.43
+169,1612130291,E.L. James,E.L. ,James,E.L. James,2011,Fifty Shades of Grey,eng,3.67,https://images.gr-assets.com/books/1385207843m/10818853.jpg,144,7.33
+458,61122416,"Paulo Coelho, Alan R. Clarke",Paulo ,Coelho,Paulo Coelho,1988,O Alquimista,eng,3.82,https://images.gr-assets.com/books/1483412266m/865.jpg,28,3.83
+192,385732554,Lois Lowry,Lois ,Lowry,Lois Lowry,1993,The Giver,eng,4.12,https://images.gr-assets.com/books/1342493368m/3636.jpg,297,0.1
+474,60764899,C.S. Lewis,C.S. ,Lewis,C.S. Lewis,1950,"The Lion, the Witch and the Wardrobe",eng,4.19,https://images.gr-assets.com/books/1353029077m/100915.jpg,424,2.33
+167,965818675,Audrey Niffenegger,Audrey ,Niffenegger,Audrey Niffenegger,2003,The Time Traveler's Wife,eng,3.95,https://images.gr-assets.com/books/1437728815m/14050.jpg,223,19.95
+101,553588486,George R.R. Martin,George ,R.R. Martin,George R.R. Martin,1996,A Game of Thrones,eng,4.45,https://images.gr-assets.com/books/1436732693m/13496.jpg,325,18.27
+185,143038419,Elizabeth Gilbert,Elizabeth ,Gilbert,Elizabeth Gilbert,2006,"Eat, pray, love: one woman's search for everything across Italy, India and Indonesia",eng,3.51,https://images.gr-assets.com/books/1503066414m/19501.jpg,487,22.03
+159,786838655,Rick Riordan,Rick ,Riordan,Rick Riordan,2005,The Lightning Thief,eng,4.23,https://images.gr-assets.com/books/1400602609m/28187.jpg,421,28.47
+1707,451529308,Louisa May Alcott,Louisa ,May Alcott,Louisa May Alcott,1868,Little Women,en-US,4.04,https://s.gr-assets.com/assets/nophoto/book/111x148-bcc042a9c91a29c1d680899eff700a03.png,18,10.41
+2568,142437204,"Charlotte Brontë, Michael Mason",Charlotte ,Bronte,Charlotte Bronte,1847,Jane Eyre,eng,4.1,https://images.gr-assets.com/books/1327867269m/10210.jpg,139,18.35
+190,553816713,Nicholas Sparks,Nicholas ,Sparks,Nicholas Sparks,1996,The Notebook,eng,4.06,https://images.gr-assets.com/books/1385738917m/15931.jpg,193,4.44
+264,770430074,Yann Martel,Yann ,Martel,Yann Martel,2001,Life of Pi,,3.88,https://images.gr-assets.com/books/1320562005m/4214.jpg,64,7.54
+128,1565125606,Sara Gruen,Sara ,Gruen,Sara Gruen,2006,Water for Elephants,eng,4.07,https://images.gr-assets.com/books/1494428973m/43641.jpg,287,7.09
+251,375831002,Markus Zusak,Markus ,Zusak,Markus Zusak,2005,The Book Thief,eng,4.36,https://images.gr-assets.com/books/1390053681m/19063.jpg,91,9.1
+507,307347974,Ray Bradbury,Ray ,Bradbury,Ray Bradbury,1953,Fahrenheit 451,spa,3.97,https://images.gr-assets.com/books/1351643740m/4381.jpg,217,0.36
+194,316160199,Stephenie Meyer,Stephenie ,Meyer,Stephenie Meyer,2006,"New Moon (Twilight, #2)",eng,3.52,https://images.gr-assets.com/books/1361039440m/49041.jpg,401,3
+45,60513039,Shel Silverstein,Shel ,Silverstein,Shel Silverstein,1974,Where the Sidewalk Ends: The Poems and Drawings of Shel Silverstein,eng,4.29,https://images.gr-assets.com/books/1168052448m/30119.jpg,247,7.3
+178,1416914285,Cassandra Clare,Cassandra ,Clare,Cassandra Clare,2007,City of Bones,eng,4.12,https://images.gr-assets.com/books/1432730315m/256683.jpg,217,11.71
+185,316160202,Stephenie Meyer,Stephenie ,Meyer,Stephenie Meyer,2007,Eclipse,en-US,3.69,https://images.gr-assets.com/books/1361038355m/428263.jpg,81,20.27
+217,375826696,Christopher Paolini,Christopher ,Paolini,Christopher Paolini,2002,Eragon,en-US,3.86,https://images.gr-assets.com/books/1366212852m/113436.jpg,99,11.97
+257,345391802,Douglas Adams,Douglas ,Adams,Douglas Adams,1979,The Hitchhiker's Guide to the Galaxy,en-US,4.2,https://images.gr-assets.com/books/1327656754m/11.jpg,198,11.39
+515,60929871,Aldous Huxley,Aldous ,Huxley,Aldous Huxley,1932,Brave New World,eng,3.97,https://images.gr-assets.com/books/1487389574m/5129.jpg,331,15.21
+183,031606792X,Stephenie Meyer,Stephenie ,Meyer,Stephenie Meyer,2008,Breaking Dawn,en-US,3.7,https://images.gr-assets.com/books/1361039438m/1162543.jpg,414,6.05
+125,142001740,Sue Monk Kidd,Sue ,Monk Kidd,Sue Monk Kidd,2001,The Secret Life of Bees,en-US,4.01,https://images.gr-assets.com/books/1473454532m/37435.jpg,246,5.98
+2277,142437174,"Mark Twain, John Seelye, Guy Cardwell",Mark ,Twain,Mark Twain,1884,The Adventures of Huckleberry Finn,eng,3.8,https://images.gr-assets.com/books/1405973850m/2956.jpg,320,12.23
+180,64410935,"E.B. White, Garth Williams, Rosemary Wells",E.B. ,White,E.B. White,1952,Charlotte's Web,eng,4.15,https://images.gr-assets.com/books/1439632243m/24178.jpg,18,9.09
+183,1400032717,Mark Haddon,Mark ,Haddon,Mark Haddon,2003,The Curious Incident of the Dog in the Night-Time,eng,3.85,https://images.gr-assets.com/books/1479863624m/1618.jpg,241,4.78
+14,1594633665,Paula Hawkins,Paula ,Hawkins,Paula Hawkins,2015,The Girl on the Train,eng,3.88,https://images.gr-assets.com/books/1490903702m/22557272.jpg,225,15.22
+287,679879242,Philip Pullman,Philip ,Pullman,Philip Pullman,1995,Northern Lights,eng,3.94,https://images.gr-assets.com/books/1451271747m/119322.jpg,378,13.98
+2498,393978893,"Emily Brontë, Richard J. Dunn",Emily ,Brontë,Emily Brontë,1847,Wuthering Heights,eng,3.82,https://s.gr-assets.com/assets/nophoto/book/111x148-bcc042a9c91a29c1d680899eff700a03.png,464,20.36
+125,743454537,Jodi Picoult,Jodi ,Picoult,Jodi Picoult,2004,My Sister's Keeper,eng,4.06,https://images.gr-assets.com/books/1369504683m/10917.jpg,71,28.38
+241,385333846,Kurt Vonnegut Jr.,Kurt ,Vonnegut Jr.,Kurt Vonnegut Jr.,1969,"Slaughterhouse-Five, or The Children's Crusade: A Duty-Dance with Death ",eng,4.06,https://images.gr-assets.com/books/1440319389m/4981.jpg,433,9.68
+409,446675539,Margaret Mitchell,Margaret ,Mitchell,Margaret Mitchell,1936,Gone with the Wind,eng,4.28,https://images.gr-assets.com/books/1328025229m/18405.jpg,410,8.65
+197,1594489505,Khaled Hosseini,Khaled ,Hosseini,Khaled Hosseini,2007,A Thousand Splendid Suns,eng,4.34,https://images.gr-assets.com/books/1345958969m/128029.jpg,194,10.45
+128,671027344,Stephen Chbosky,Stephen ,Chbosky,Stephen Chbosky,1999,The Perks of Being a Wallflower,eng,4.21,https://images.gr-assets.com/books/1167352178m/22628.jpg,134,24.51
+164,7442912,Veronica Roth,Veronica ,Roth,Veronica Roth,2012,Insurgent,eng,4.07,https://images.gr-assets.com/books/1325667729m/11735983.jpg,188,10.88
+224,812550706,Orson Scott Card,Orson ,Scott Card,Orson Scott Card,1985,Ender's Game,eng,4.3,https://images.gr-assets.com/books/1408303130m/375802.jpg,29,27.95
+2618,141439475,"Mary Wollstonecraft Shelley, Percy Bysshe Shelley, Maurice Hindle",Mary ,Wollstonecraft Shelley,Mary Wollstonecraft Shelley,1818,"Frankenstein; or, The Modern Prometheus",eng,3.75,https://images.gr-assets.com/books/1381512375m/18490.jpg,2,0.99
+289,450040186,Stephen King,Stephen ,King,Stephen King,1977,The Shining,eng,4.17,https://images.gr-assets.com/books/1353277730m/11588.jpg,160,12.17
+161,316068047,Stephenie Meyer,Stephenie ,Meyer,Stephenie Meyer,2008,The Host,en-US,3.84,https://images.gr-assets.com/books/1318009171m/1656001.jpg,191,7.99
+187,142402516,John Green,John ,Green,John Green,2005,Looking for Alaska,eng,4.09,https://images.gr-assets.com/books/1394798630m/99561.jpg,220,11.07
+193,014028009X,Helen Fielding,Helen ,Fielding,Helen Fielding,1996,Bridget Jones's Diary,eng,3.75,https://images.gr-assets.com/books/1292060045m/227443.jpg,278,21.94
+1969,141439661,"Jane Austen, Tony Tanner, Ros Ballaster",Jane ,Austen,Jane Austen,1811,Sense and Sensibility,eng,4.06,https://images.gr-assets.com/books/1397245675m/14935.jpg,321,2.64
+138,439244196,"Louis Sachar, Louis Sachar",Louis ,Sachar,Louis Sachar,1998,Holes,eng,3.93,https://images.gr-assets.com/books/1327781893m/38709.jpg,147,13.07
+129,307275558,Lauren Weisberger,Lauren ,Weisberger,Lauren Weisberger,2003,The Devil Wears Prada,eng,3.7,https://s.gr-assets.com/assets/nophoto/book/111x148-bcc042a9c91a29c1d680899eff700a03.png,415,25.5
+1703,143039954,"Homer, Robert Fagles, E.V. Rieu, Frédéric Mugler, Bernard Knox",Homer,,Homer,-720,The Odyssey,eng,3.73,https://images.gr-assets.com/books/1390173285m/1381.jpg,285,17.52
+1708,156012197,"Antoine de Saint-Exupéry, Richard Howard, Dom Marcos Barbosa, Melina Karakosta",Antoine ,de Saint-Exupéry,Antoine de Saint-Exupéry,1946,Le Petit Prince,eng,4.28,https://images.gr-assets.com/books/1367545443m/157993.jpg,0,14.62
+92,074324754X,Jeannette Walls,Jeannette ,Walls,Jeannette Walls,2005,The Glass Castle,eng,4.24,https://images.gr-assets.com/books/1400930557m/7445.jpg,158,10.09
+108,385486804,Jon Krakauer,Jon ,Krakauer,Jon Krakauer,1996,Into the Wild,eng,3.94,https://images.gr-assets.com/books/1403173986m/1845.jpg,150,23.65
+525,141439602,"Charles Dickens, Richard Maxwell, Hablot Knight Browne",Charles ,Dickens,Charles Dickens,1859,A Tale of Two Cities,eng,3.81,https://images.gr-assets.com/books/1344922523m/1953.jpg,452,25.01
+176,030734813X,Michael Crichton,Michael ,Crichton,Michael Crichton,1990,Jurassic Park,spa,3.96,https://s.gr-assets.com/assets/nophoto/book/111x148-bcc042a9c91a29c1d680899eff700a03.png,126,27.82
+81,60256656,Shel Silverstein,Shel ,Silverstein,Shel Silverstein,1964,The Giving Tree,eng,4.38,https://images.gr-assets.com/books/1174210942m/370493.jpg,221,20.6
+158,385338600,John Grisham,John ,Grisham,John Grisham,1989,A Time to Kill,eng,4.03,https://s.gr-assets.com/assets/nophoto/book/111x148-bcc042a9c91a29c1d680899eff700a03.png,181,28.67
+109,374500010,"Elie Wiesel, Marion Wiesel",Elie ,Wiesel,Elie Wiesel,1958,Un di Velt Hot Geshvign,eng,4.3,https://images.gr-assets.com/books/1473495285m/1617.jpg,153,16.75
+178,014241493X,John Green,John ,Green,John Green,2008,Paper Towns,en-US,3.88,https://images.gr-assets.com/books/1349013610m/6442769.jpg,240,2.27
+129,345418263,William Goldman,William ,Goldman,William Goldman,1973,The Princess Bride,en-US,4.25,https://images.gr-assets.com/books/1327903636m/21787.jpg,122,24.2
+156,014038572X,S.E. Hinton,S.E. ,Hinton,S.E. Hinton,1967,The Outsiders,en-US,4.06,https://images.gr-assets.com/books/1442129426m/231804.jpg,245,21.27
+147,385737947,James Dashner,James ,Dashner,James Dashner,2009,The Maze Runner,eng,4.02,https://images.gr-assets.com/books/1375596592m/6186357.jpg,120,6.62
+124,61234001,"Steven D. Levitt, Stephen J. Dubner",Steven ,D. Levitt,Steven D. Levitt,2005,Freakonomics: A Rogue Economist Explores the Hidden Side of Everything,en-US,3.93,https://images.gr-assets.com/books/1327909092m/1202.jpg,121,12.97
+1350,517189607,Frances Hodgson Burnett,Frances ,Hodgson Burnett,Frances Hodgson Burnett,1911,The Secret Garden,eng,4.12,https://images.gr-assets.com/books/1327873635m/2998.jpg,9,25.76
+555,60531045,"Gabriel García Márquez, Gregory Rabassa",Gabriel ,Garcia Marquez,Gabriel Garcia Marquez,1967,Cien anos de soledad,eng,4.04,https://images.gr-assets.com/books/1327881361m/320.jpg,465,13.84
+2303,375751513,"Oscar Wilde, Jeffrey Eugenides",Oscar ,Wilde,Oscar Wilde,1891,The Picture of Dorian Gray,eng,4.06,https://images.gr-assets.com/books/1424596966m/5297.jpg,155,26.41
+133,345803507,E.L. James,E.L. ,James,E.L. James,2012,Fifty Shades Freed,eng,3.88,https://images.gr-assets.com/books/1336418837m/13536860.jpg,385,5.81
+2207,393970124,"Bram Stoker, Nina Auerbach, David J. Skal",Bram ,Stoker,Bram Stoker,1897,Dracula,eng,3.98,https://images.gr-assets.com/books/1387151694m/17245.jpg,257,18.17
+209,307269981,"Stieg Larsson, Reg Keeland",Stieg ,Larsson,Stieg Larsson,2006,Flickan som lekte med elden,eng,4.22,https://images.gr-assets.com/books/1351778881m/5060378.jpg,361,23.69
+147,1612130585,E.L. James,E.L. ,James,E.L. James,2011,Fifty Shades Darker,eng,3.87,https://images.gr-assets.com/books/1358266080m/11857408.jpg,114,5.98
+39,60786507,Barbara Kingsolver,Barbara ,Kingsolver,Barbara Kingsolver,1998,The Poisonwood Bible,eng,4.02,https://images.gr-assets.com/books/1412242487m/7244.jpg,241,17.42
