@@ -53,6 +53,7 @@ public class ProductRestController {
             object.put("id", book.getId());
             object.put("name", book.getName());
             object.put("category", "BOOK");
+            createLink(object, "http://localhost:8080/products/" + book.getId(), "self");
             node.add(object);
         });
         return node;
@@ -106,8 +107,18 @@ public class ProductRestController {
             return ResponseEntity.ok().body(Response.ok("Item id " + cartItemId + " has been removed from the shopping cart"));
         }
 
-
         throw new NoSuchElementException("Could not find cart item id " + product.get("id"));
+    }
+
+    private void createLink(ObjectNode node, String href, String rel) {
+        ObjectMapper mapper = new ObjectMapper();
+        ObjectNode linkRel = mapper.createObjectNode();
+        linkRel.put("href", href);
+        linkRel.put("rel", rel);
+
+        ArrayNode links = mapper.createArrayNode();
+        links.add(linkRel);
+        node.set("link", links);
     }
 
 }
