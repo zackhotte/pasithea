@@ -33,7 +33,7 @@ public class Book {
     private Format format;
     private Integer quantity;
     private Float price;
-    private String url;
+    private String imageUrl;
 
     @ManyToMany
     @JoinTable(name = "book_author",
@@ -48,7 +48,7 @@ public class Book {
     }
 
     public Book(String name, String description, String publisher, Date publishedDate,
-                Format format, Integer quantity, Float price, String url) {
+                Format format, Integer quantity, Float price, String imageUrl) {
         this.name = name;
         this.description = description;
         this.publisher = publisher;
@@ -56,7 +56,7 @@ public class Book {
         this.format = format;
         this.quantity = quantity;
         this.price = price;
-        this.url = url;
+        this.imageUrl = imageUrl;
         verifyInStock();
     }
 
@@ -105,8 +105,8 @@ public class Book {
         return price;
     }
 
-    public String getUrl() {
-        return url;
+    public String getImageUrl() {
+        return imageUrl;
     }
 
     public Boolean getInStock() {
@@ -116,4 +116,5 @@ public class Book {
     public Set<Author> getAuthors() {
         return authors;
     }
+
 }
