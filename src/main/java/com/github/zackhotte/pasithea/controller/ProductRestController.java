@@ -104,10 +104,10 @@ public class ProductRestController {
         if (targetItem.isPresent()) {
             Long cartItemId = targetItem.get().getId();
             shoppingCartRepository.delete(cartItemId);
-            return ResponseEntity.ok().body(Response.ok("Item id " + cartItemId + " has been removed from the shopping cart"));
+            return ResponseEntity.ok().body(Response.ok("Book id " + cartItemId + " has been removed from the shopping cart"));
         }
 
-        throw new NoSuchElementException("Could not find cart item id " + product.get("id"));
+        throw new NoSuchElementException("Could not find book id " + product.get("id"));
     }
 
     private void createLink(ObjectNode node, String href, String rel) {
