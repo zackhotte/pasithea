@@ -124,7 +124,7 @@ public class ProductRestController {
         node.set("link", links);
     }
 
-    private ArrayNode getAllBooks() {
+    private JsonNode getAllBooks() {
         ObjectMapper mapper = new ObjectMapper();
         ArrayNode node = mapper.createArrayNode();
         bookRepository.findAll().forEach(book -> {
@@ -132,6 +132,10 @@ public class ProductRestController {
             object.put("id", book.getId());
             object.put("name", book.getName());
             object.put("category", "BOOK");
+            object.put("quantity", book.getQuantity());
+            object.put("price", book.getPrice());
+            object.put("rating", book.getRating());
+            object.put("imageUrl", book.getImageUrl());
             createLink(object, "http://localhost:8080/products/" + book.getId(), "self");
             node.add(object);
         });
