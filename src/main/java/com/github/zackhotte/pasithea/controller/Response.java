@@ -1,4 +1,4 @@
-package com.github.zackhotte.pasithea.model;
+package com.github.zackhotte.pasithea.controller;
 
 public class Response {
 
