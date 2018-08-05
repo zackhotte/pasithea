@@ -55,7 +55,7 @@ public class ProductRestController {
 
     @GetMapping(path = "/{productId}")
     public Book productInformation(@PathVariable Long productId) {
-        validateProductId(productId);
+        Validator.validateProductId(productId);
         return bookRepository.findOne(productId);
     }
 
@@ -103,12 +103,6 @@ public class ProductRestController {
 
         responseObject.set("res", res);
         return responseObject;
-    }
-
-    private void validateProductId(Long productId) {
-        if (bookRepository.findOne(productId) == null) {
-            throw new NoSuchElementException("Could not find product id " + productId);
-        }
     }
 
 }

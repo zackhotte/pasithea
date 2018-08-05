@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
@@ -54,7 +55,7 @@ public class ShoppingCartRestController {
         long bookId = Long.parseLong(body.get("id"));
         int quantity = Integer.parseInt(body.get("quantity"));
 
-        validateProductId(bookId);
+        Validator.validateProductId(bookId);
         Book book = bookRepository.findOne(bookId);
         book.subtractQuantity(quantity);
         ShoppingCart cartItem = shoppingCartRepository.save(new ShoppingCart(book, quantity));
@@ -91,10 +92,5 @@ public class ShoppingCartRestController {
         throw new NoSuchElementException("Could not find product id " + product.get("id"));
     }
 
-    private void validateProductId(Long productId) {
-        if (bookRepository.findOne(productId) == null) {
-            throw new NoSuchElementException("Could not find product id " + productId);
-        }
-    }
 
 }
