@@ -74,8 +74,8 @@ public class ShoppingCartRestControllerTest {
                 .contentType(MediaType.APPLICATION_JSON_VALUE)
                 .content(body))
                 .andExpect(status().isCreated())
-                .andExpect(jsonPath("$.message", is("Item id 3 has been added to your shopping cart")))
-                .andExpect(jsonPath("$.link", is(origin + "/products/shoppingcart/1")));
+                .andExpect(jsonPath("$.message", is("Product id 3 has been added to your shopping cart")))
+                .andExpect(jsonPath("$.link", is(origin + "/api/shoppingcart/1")));
 
         mockMvc.perform(get("/api/shoppingcart/1"))
                 .andExpect(status().isOk())
@@ -115,7 +115,7 @@ public class ShoppingCartRestControllerTest {
                 .content(body))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.message", is("Product id 3 has been removed from the shopping cart")))
-                .andExpect(jsonPath("$.link", is(origin + "/products/shoppingcart")));
+                .andExpect(jsonPath("$.link", is(origin + "/api/shoppingcart")));
         ;
 
         mockMvc.perform(get("/api/shoppingcart"))
