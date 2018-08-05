@@ -57,12 +57,12 @@ curl http://localhost:8080/api/products | json_pp
         "imageUrl": "https://images.gr-assets.com/books/1447303603m/2767052.jpg",
         "link": [
             {
-                "href": "http://localhost:8080/products/1",
+                "href": "http://localhost:8080/api/products/1",
                 "rel": "self"
             }
         ]
-  },
-  {
+    },
+    {
         "id": 2,
         "name": "Harry Potter and the Philosopher's Stone",
         "category": "BOOK",
@@ -72,11 +72,11 @@ curl http://localhost:8080/api/products | json_pp
         "imageUrl": "https://images.gr-assets.com/books/1474154022m/3.jpg",
         "link": [
             {
-                "href": "http://localhost:8080/products/2",
+                "href": "http://localhost:8080/api/products/2",
                 "rel": "self"
             }
         ]
-  },
+    },
  ...
 ]
 ```
