@@ -4,29 +4,16 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
-import com.github.zackhotte.pasithea.model.*;
+import com.github.zackhotte.pasithea.model.Book;
 import com.github.zackhotte.pasithea.repositories.AuthorRepository;
 import com.github.zackhotte.pasithea.repositories.BookRepository;
 import com.github.zackhotte.pasithea.repositories.ShoppingCartRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import javax.servlet.http.HttpServletRequest;
-import java.net.URI;
-import java.net.URISyntaxException;
 import java.util.List;
-import java.util.Map;
-import java.util.NoSuchElementException;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @RestController
@@ -46,9 +33,10 @@ public class ProductRestController {
     }
 
     @GetMapping
-    public JsonNode getBooks(@RequestParam(value = "q", required = false, defaultValue = "") String q) {
+    public JsonNode getBooks(@RequestParam(value = "q", required = false, defaultValue = "") String q,
+                             HttpServletRequest request) {
         if (q == null || q.isEmpty()) {
-            return getAllBooks();
+            return getAllBooks(request);
         }
         return searchForBook(q);
     }
@@ -59,18 +47,9 @@ public class ProductRestController {
         return bookRepository.findOne(productId);
     }
 
-    private void createLink(ObjectNode node, String href, String rel) {
-        ObjectMapper mapper = new ObjectMapper();
-        ObjectNode linkRel = mapper.createObjectNode();
-        linkRel.put("href", href);
-        linkRel.put("rel", rel);
+    private JsonNode getAllBooks(HttpServletRequest request) {
+        String origin = ServletUriComponentsBuilder.fromContextPath(request).toUriString();
 
-        ArrayNode links = mapper.createArrayNode();
-        links.add(linkRel);
-        node.set("link", links);
-    }
-
-    private JsonNode getAllBooks() {
         ObjectMapper mapper = new ObjectMapper();
         ArrayNode node = mapper.createArrayNode();
         bookRepository.findAll().forEach(book -> {
@@ -82,7 +61,7 @@ public class ProductRestController {
             object.put("price", book.getPrice());
             object.put("rating", book.getRating());
             object.put("imageUrl", book.getImageUrl());
-            createLink(object, "http://localhost:8080/products/" + book.getId(), "self");
+            createLink(object, origin + "/api/products/" + book.getId(), "self");
             node.add(object);
         });
         return node;
@@ -103,6 +82,17 @@ public class ProductRestController {
 
         responseObject.set("res", res);
         return responseObject;
+    }
+
+    private void createLink(ObjectNode node, String href, String rel) {
+        ObjectMapper mapper = new ObjectMapper();
+        ObjectNode linkRel = mapper.createObjectNode();
+        linkRel.put("href", href);
+        linkRel.put("rel", rel);
+
+        ArrayNode links = mapper.createArrayNode();
+        links.add(linkRel);
+        node.set("link", links);
     }
 
 }
