@@ -20,6 +20,7 @@ import org.springframework.web.context.WebApplicationContext;
 
 import java.nio.charset.Charset;
 
+import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.is;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
@@ -110,7 +111,7 @@ public class ProductRestControllerTest {
                 .contentType(MediaType.APPLICATION_JSON_VALUE)
                 .content(body))
                 .andExpect(status().isNotFound())
-                .andExpect(jsonPath("$.error", is("Could not find cart item id 200")))
+                .andExpect(jsonPath("$.error", is("Could not find book id 200")))
                 .andExpect(jsonPath("$.code", is(404)));
     }
 
@@ -121,7 +122,7 @@ public class ProductRestControllerTest {
                 .contentType(MediaType.APPLICATION_JSON_VALUE)
                 .content(body))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.message", is("Item id 1 has been removed from the shopping cart")));
+                .andExpect(jsonPath("$.message", is("Book id 1 has been removed from the shopping cart")));
 
         mockMvc.perform(get("/products/shoppingcart"))
                 .andExpect(content().contentType(contentType))
@@ -144,6 +145,17 @@ public class ProductRestControllerTest {
                 .andExpect(jsonPath("$.unitPrice", is(15.21)))
                 .andExpect(jsonPath("$.quantity", is(5)))
                 .andExpect(jsonPath("$.totalPrice", is(76.05)));
+    }
+
+    @Test
+    public void test8ProductSearchByName() throws Exception {
+        mockMvc.perform(get("/products?q=Harry Potter"))
+                .andExpect(status().isOk())
+                .andExpect(content().contentType(contentType))
+                .andExpect(jsonPath("$.q", is("Harry Potter")))
+                .andExpect(jsonPath("$.res.numFound", is(7)))
+                .andExpect(jsonPath("$.res.results", hasSize(7)))
+                .andExpect(jsonPath("$.res.results[0].name", is("Harry Potter and the Philosopher's Stone")));
     }
 
 }

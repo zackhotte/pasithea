@@ -1,5 +1,6 @@
 package com.github.zackhotte.pasithea.controller;
 
+import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
@@ -27,6 +29,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.NoSuchElementException;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/products")
@@ -45,18 +48,12 @@ public class ProductRestController {
     }
 
     @GetMapping
-    public ArrayNode getAllBooks() {
+    public JsonNode getBooks(@RequestParam(value = "q", required = false, defaultValue = "") String q) {
         ObjectMapper mapper = new ObjectMapper();
-        ArrayNode node = mapper.createArrayNode();
-        bookRepository.findAll().forEach(book -> {
-            ObjectNode object = mapper.createObjectNode();
-            object.put("id", book.getId());
-            object.put("name", book.getName());
-            object.put("category", "BOOK");
-            createLink(object, "http://localhost:8080/products/" + book.getId(), "self");
-            node.add(object);
-        });
-        return node;
+        if (q == null || q.isEmpty()) {
+            return getAllBooks();
+        }
+        return searchForBook(q);
     }
 
     @GetMapping(path = "/{productId}")
@@ -119,6 +116,37 @@ public class ProductRestController {
         ArrayNode links = mapper.createArrayNode();
         links.add(linkRel);
         node.set("link", links);
+    }
+
+    private ArrayNode getAllBooks() {
+        ObjectMapper mapper = new ObjectMapper();
+        ArrayNode node = mapper.createArrayNode();
+        bookRepository.findAll().forEach(book -> {
+            ObjectNode object = mapper.createObjectNode();
+            object.put("id", book.getId());
+            object.put("name", book.getName());
+            object.put("category", "BOOK");
+            createLink(object, "http://localhost:8080/products/" + book.getId(), "self");
+            node.add(object);
+        });
+        return node;
+    }
+
+    private ObjectNode searchForBook(String q) {
+        ObjectMapper mapper = new ObjectMapper();
+        List<Book> books = bookRepository.findAll().stream()
+                .filter(book -> book.getName().toLowerCase().contains(q.toLowerCase()))
+                .collect(Collectors.toList());
+
+        ObjectNode responseObject = mapper.createObjectNode();
+        responseObject.put("q", q);
+
+        ObjectNode res = mapper.createObjectNode();
+        res.put("numFound", books.size());
+        res.set("results", mapper.valueToTree(books));
+
+        responseObject.set("res", res);
+        return responseObject;
     }
 
 }
