@@ -1,9 +1,9 @@
 package com.github.zackhotte.pasithea.controller;
 
 import com.github.zackhotte.pasithea.Application;
-import com.github.zackhotte.pasithea.model.AuthorRepository;
-import com.github.zackhotte.pasithea.model.BookRepository;
-import com.github.zackhotte.pasithea.model.ShoppingCartRepository;
+import com.github.zackhotte.pasithea.repositories.AuthorRepository;
+import com.github.zackhotte.pasithea.repositories.BookRepository;
+import com.github.zackhotte.pasithea.repositories.ShoppingCartRepository;
 import org.junit.Before;
 import org.junit.FixMethodOrder;
 import org.junit.Test;
@@ -117,7 +117,7 @@ public class ProductRestControllerTest {
                 .contentType(MediaType.APPLICATION_JSON_VALUE)
                 .content(body))
                 .andExpect(status().isNotFound())
-                .andExpect(jsonPath("$.error", is("Could not find book id 200")))
+                .andExpect(jsonPath("$.error", is("Could not find product id 200")))
                 .andExpect(jsonPath("$.code", is(404)));
     }
 
@@ -131,7 +131,7 @@ public class ProductRestControllerTest {
                 .contentType(MediaType.APPLICATION_JSON_VALUE)
                 .content(body))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.message", is("Book id 1 has been removed from the shopping cart")))
+                .andExpect(jsonPath("$.message", is("Product id 3 has been removed from the shopping cart")))
                 .andExpect(jsonPath("$.link", is(origin + "/products/shoppingcart")));
         ;
 
@@ -167,6 +167,25 @@ public class ProductRestControllerTest {
                 .andExpect(jsonPath("$.res.numFound", is(7)))
                 .andExpect(jsonPath("$.res.results", hasSize(7)))
                 .andExpect(jsonPath("$.res.results[0].name", is("Harry Potter and the Philosopher's Stone")));
+    }
+
+    @Test
+    public void test9ThatErrorIsThrownWhenItemIdDoesNotExist() throws Exception {
+        mockMvc.perform(get("/products/2000"))
+                .andExpect(status().isNotFound())
+                .andExpect(content().contentType(contentType))
+                .andExpect(jsonPath("$.error", is("Could not find product id 2000")));
+    }
+
+    @Test
+    public void test10ThatErrorIsThrownWhenItemIdDoesNotExistWhenAddingToCart() throws Exception {
+        String body = "{\"id\": \"2000\", \"quantity\": \"1\"}";
+        mockMvc.perform(post("/products/addtocart")
+                .contentType(MediaType.APPLICATION_JSON_VALUE)
+                .content(body))
+                .andExpect(status().isNotFound())
+                .andExpect(content().contentType(contentType))
+                .andExpect(jsonPath("$.error", is("Could not find product id 2000")));
     }
 
 }

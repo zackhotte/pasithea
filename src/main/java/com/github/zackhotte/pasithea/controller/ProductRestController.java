@@ -4,12 +4,10 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ArrayNode;
 import com.fasterxml.jackson.databind.node.ObjectNode;
-import com.github.zackhotte.pasithea.model.AuthorRepository;
-import com.github.zackhotte.pasithea.model.Book;
-import com.github.zackhotte.pasithea.model.BookRepository;
-import com.github.zackhotte.pasithea.model.OutOfStockException;
-import com.github.zackhotte.pasithea.model.ShoppingCart;
-import com.github.zackhotte.pasithea.model.ShoppingCartRepository;
+import com.github.zackhotte.pasithea.model.*;
+import com.github.zackhotte.pasithea.repositories.AuthorRepository;
+import com.github.zackhotte.pasithea.repositories.BookRepository;
+import com.github.zackhotte.pasithea.repositories.ShoppingCartRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -49,7 +47,6 @@ public class ProductRestController {
 
     @GetMapping
     public JsonNode getBooks(@RequestParam(value = "q", required = false, defaultValue = "") String q) {
-        ObjectMapper mapper = new ObjectMapper();
         if (q == null || q.isEmpty()) {
             return getAllBooks();
         }
@@ -58,6 +55,7 @@ public class ProductRestController {
 
     @GetMapping(path = "/{productId}")
     public Book productInformation(@PathVariable Long productId) {
+        validateProductId(productId);
         return bookRepository.findOne(productId);
     }
 
@@ -78,6 +76,7 @@ public class ProductRestController {
         long bookId = Long.parseLong(body.get("id"));
         int quantity = Integer.parseInt(body.get("quantity"));
 
+        validateProductId(bookId);
         Book book = bookRepository.findOne(bookId);
         book.subtractQuantity(quantity);
         ShoppingCart cartItem = shoppingCartRepository.save(new ShoppingCart(book, quantity));
@@ -96,6 +95,7 @@ public class ProductRestController {
             throw new NoSuchElementException("Shopping cart is empty");
         }
 
+        Long productId = product.get("id");
         Optional<ShoppingCart> targetItem = shoppingCart.stream()
                 .filter(item -> item.getBook().getId().equals(product.get("id")))
                 .findFirst();
@@ -105,12 +105,12 @@ public class ProductRestController {
             shoppingCartRepository.delete(cartItemId);
             String origin = ServletUriComponentsBuilder.fromContextPath(request).toUriString();
             return ResponseEntity.ok().body(Response.ok(
-                    "Book id " + cartItemId + " has been removed from the shopping cart",
+                    "Product id " + productId + " has been removed from the shopping cart",
                     origin + "/products/shoppingcart"
             ));
         }
 
-        throw new NoSuchElementException("Could not find book id " + product.get("id"));
+        throw new NoSuchElementException("Could not find product id " + product.get("id"));
     }
 
     private void createLink(ObjectNode node, String href, String rel) {
@@ -153,6 +153,12 @@ public class ProductRestController {
 
         responseObject.set("res", res);
         return responseObject;
+    }
+
+    private void validateProductId(Long productId) {
+        if (bookRepository.findOne(productId) == null) {
+            throw new NoSuchElementException("Could not find product id " + productId);
+        }
     }
 
 }
