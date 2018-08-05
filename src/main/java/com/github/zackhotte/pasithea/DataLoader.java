@@ -75,12 +75,15 @@ public class DataLoader implements CommandLineRunner {
             Book book = new Book(
                     record.get("original_title"),
                     "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris semper.",
-                    "Publisher",
-                    parseDate(record.get("original_publication_year")),
+                    record.get("publisher_name"),
+                    parseDate(record.get("date")),
                     Format.PAPERBACK,
                     Integer.valueOf(record.get("quantity")),
                     Float.valueOf(record.get("price")),
-                    record.get("image_url")
+                    record.get("image_url"),
+                    Integer.valueOf(record.get("page_count")),
+                    record.get("original_publication_year"),
+                    Float.valueOf(record.get("average_rating"))
             );
 
             book.getAuthors().add(authors.get(authorName));
@@ -90,7 +93,7 @@ public class DataLoader implements CommandLineRunner {
 
     private Date parseDate(String date) {
         try {
-            return new SimpleDateFormat("yyyy").parse(date);
+            return new SimpleDateFormat("MMM d yyyy").parse(date);
         } catch (ParseException e) {
             return new Date();
         }
