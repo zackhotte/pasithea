@@ -30,7 +30,7 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("/products")
+@RequestMapping("/api/products")
 public class ProductRestController {
 
     private BookRepository bookRepository;
@@ -57,60 +57,6 @@ public class ProductRestController {
     public Book productInformation(@PathVariable Long productId) {
         validateProductId(productId);
         return bookRepository.findOne(productId);
-    }
-
-    @GetMapping(path = "/shoppingcart")
-    public List<ShoppingCart> shoppingCart() {
-        return shoppingCartRepository.findAll();
-    }
-
-    @GetMapping(path = "/shoppingcart/{shoppingCartId}")
-    public ShoppingCart getItemInShoppingCart(@PathVariable Long shoppingCartId) {
-        return shoppingCartRepository.findOne(shoppingCartId);
-    }
-
-    @PostMapping(path = "/addtocart", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Response> addToCart(@RequestBody Map<String, String> body, HttpServletRequest request)
-            throws OutOfStockException, URISyntaxException {
-
-        long bookId = Long.parseLong(body.get("id"));
-        int quantity = Integer.parseInt(body.get("quantity"));
-
-        validateProductId(bookId);
-        Book book = bookRepository.findOne(bookId);
-        book.subtractQuantity(quantity);
-        ShoppingCart cartItem = shoppingCartRepository.save(new ShoppingCart(book, quantity));
-
-        String origin = ServletUriComponentsBuilder.fromContextPath(request).toUriString();
-        URI uri = new URI(origin + "/products/shoppingcart/" + cartItem.getId());
-        return ResponseEntity.created(uri).body(Response.ok(
-                "Item id " + bookId + " has been added to your shopping cart", uri.toString()
-        ));
-    }
-
-    @PostMapping(path = "/removefromcart", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Response> removeFromCart(@RequestBody Map<String, Long> product, HttpServletRequest request) {
-        List<ShoppingCart> shoppingCart = shoppingCartRepository.findAll();
-        if (shoppingCart.isEmpty()) {
-            throw new NoSuchElementException("Shopping cart is empty");
-        }
-
-        Long productId = product.get("id");
-        Optional<ShoppingCart> targetItem = shoppingCart.stream()
-                .filter(item -> item.getBook().getId().equals(product.get("id")))
-                .findFirst();
-
-        if (targetItem.isPresent()) {
-            Long cartItemId = targetItem.get().getId();
-            shoppingCartRepository.delete(cartItemId);
-            String origin = ServletUriComponentsBuilder.fromContextPath(request).toUriString();
-            return ResponseEntity.ok().body(Response.ok(
-                    "Product id " + productId + " has been removed from the shopping cart",
-                    origin + "/products/shoppingcart"
-            ));
-        }
-
-        throw new NoSuchElementException("Could not find product id " + product.get("id"));
     }
 
     private void createLink(ObjectNode node, String href, String rel) {
