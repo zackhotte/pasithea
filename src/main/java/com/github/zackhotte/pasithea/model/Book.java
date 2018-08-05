@@ -1,15 +1,6 @@
 package com.github.zackhotte.pasithea.model;
 
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.Lob;
-import javax.persistence.ManyToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
 import java.util.HashSet;
@@ -84,6 +75,10 @@ public class Book {
         }
         quantity -= amount;
         verifyInStock();
+    }
+
+    public void addQuantity(int amount) {
+        quantity += amount;
     }
 
     public Long getId() {
