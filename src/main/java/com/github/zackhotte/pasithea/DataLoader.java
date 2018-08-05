@@ -1,9 +1,9 @@
 package com.github.zackhotte.pasithea;
 
 import com.github.zackhotte.pasithea.model.Author;
-import com.github.zackhotte.pasithea.model.AuthorRepository;
+import com.github.zackhotte.pasithea.repositories.AuthorRepository;
 import com.github.zackhotte.pasithea.model.Book;
-import com.github.zackhotte.pasithea.model.BookRepository;
+import com.github.zackhotte.pasithea.repositories.BookRepository;
 import com.github.zackhotte.pasithea.model.Format;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVParser;
