@@ -152,4 +152,28 @@ public class ShoppingCartRestControllerTest {
                 .andExpect(jsonPath("$.error", is("Could not find product id 2000")));
     }
 
+    @Test
+    public void test8ThatErrorIsThrownForInvalidJson() throws Exception {
+        checkInvalidJson("/api/shoppingcart/addtocart", "{\"randomKey\": \"5\"}", "JSON payload is missing the product id");
+        checkInvalidJson("/api/shoppingcart/addtocart", "{\"id\": \"2\", \"randomKey\": \"5\"}", "JSON payload is missing the quantity amount to add to the cart");
+        checkInvalidJson("/api/shoppingcart/addtocart", "{\"id\": \"hello\", \"quantity\": \"5\"}", "Could not parse the 'id' data");
+        checkInvalidJson("/api/shoppingcart/addtocart", "{\"id\": \"2\", \"quantity\": \"world\"}", "Could not parse the 'quantity' data");
+    }
+
+    @Test
+    public void test9ThatErrorIsThrownForInvalidJsonWhenRemovingItems() throws Exception {
+        checkInvalidJson("/api/shoppingcart/removefromcart", "{\"randomKey\": \"5\"}", "JSON payload is missing the product id");
+        checkInvalidJson("/api/shoppingcart/removefromcart", "{\"id\": \"hello\"}", "Could not parse the 'id' data");
+    }
+
+    private void checkInvalidJson(String url, String body, String errorMessage) throws Exception {
+        mockMvc.perform(post(url)
+                .contentType(MediaType.APPLICATION_JSON_VALUE)
+                .content(body))
+                .andExpect(status().isBadRequest())
+                .andExpect(content().contentType(contentType))
+                .andExpect(jsonPath("$.message", is("Error processing the request body")))
+                .andExpect(jsonPath("$.error", is(errorMessage)));
+    }
+
 }

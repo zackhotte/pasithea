@@ -50,7 +50,8 @@ public class ShoppingCartRestController {
 
     @PostMapping(path = "/addtocart", consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Response> addToCart(@RequestBody Map<String, String> body, HttpServletRequest request)
-            throws OutOfStockException, URISyntaxException {
+            throws OutOfStockException, URISyntaxException, InvalidJsonDataException {
+        Validator.validateAddingItemToCart(body);
 
         long bookId = Long.parseLong(body.get("id"));
         int quantity = Integer.parseInt(body.get("quantity"));
@@ -68,15 +69,18 @@ public class ShoppingCartRestController {
     }
 
     @PostMapping(path = "/removefromcart", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Response> removeFromCart(@RequestBody Map<String, Long> product, HttpServletRequest request) {
+    public ResponseEntity<Response> removeFromCart(@RequestBody Map<String, String> product, HttpServletRequest request)
+            throws InvalidJsonDataException {
+        Validator.validateRemovingItemFromCart(product);
+
         List<ShoppingCart> shoppingCart = shoppingCartRepository.findAll();
         if (shoppingCart.isEmpty()) {
             throw new NoSuchElementException("Shopping cart is empty");
         }
 
-        Long productId = product.get("id");
+        Long productId = Long.parseLong(product.get("id"));
         Optional<ShoppingCart> targetItem = shoppingCart.stream()
-                .filter(item -> item.getBook().getId().equals(product.get("id")))
+                .filter(item -> item.getBook().getId().equals(productId))
                 .findFirst();
 
         if (targetItem.isPresent()) {

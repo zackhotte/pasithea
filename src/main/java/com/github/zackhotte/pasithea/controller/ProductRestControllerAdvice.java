@@ -40,4 +40,12 @@ public class ProductRestControllerAdvice {
         );
     }
 
+    @ExceptionHandler(value = InvalidJsonDataException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    protected ResponseEntity<Response> invalidDataHandler(InvalidJsonDataException e) {
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(
+                Response.error("Error processing the request body", e.getMessage(), 400)
+        );
+    }
+
 }
