@@ -84,11 +84,13 @@ public class ProductRestController {
 
         String origin = ServletUriComponentsBuilder.fromContextPath(request).toUriString();
         URI uri = new URI(origin + "/products/shoppingcart/" + cartItem.getId());
-        return ResponseEntity.created(uri).body(Response.ok("Item added to your shopping cart: " + uri));
+        return ResponseEntity.created(uri).body(Response.ok(
+                "Item id " + bookId + " has been added to your shopping cart", uri.toString()
+        ));
     }
 
     @PostMapping(path = "/removefromcart", consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Response> removeFromCart(@RequestBody Map<String, Long> product) {
+    public ResponseEntity<Response> removeFromCart(@RequestBody Map<String, Long> product, HttpServletRequest request) {
         List<ShoppingCart> shoppingCart = shoppingCartRepository.findAll();
         if (shoppingCart.isEmpty()) {
             throw new NoSuchElementException("Shopping cart is empty");
@@ -101,7 +103,11 @@ public class ProductRestController {
         if (targetItem.isPresent()) {
             Long cartItemId = targetItem.get().getId();
             shoppingCartRepository.delete(cartItemId);
-            return ResponseEntity.ok().body(Response.ok("Book id " + cartItemId + " has been removed from the shopping cart"));
+            String origin = ServletUriComponentsBuilder.fromContextPath(request).toUriString();
+            return ResponseEntity.ok().body(Response.ok(
+                    "Book id " + cartItemId + " has been removed from the shopping cart",
+                    origin + "/products/shoppingcart"
+            ));
         }
 
         throw new NoSuchElementException("Could not find book id " + product.get("id"));

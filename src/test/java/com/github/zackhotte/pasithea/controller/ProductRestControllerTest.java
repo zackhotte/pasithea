@@ -12,6 +12,7 @@ import org.junit.runners.MethodSorters;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
+import org.springframework.mock.web.MockHttpServletRequest;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
@@ -82,11 +83,16 @@ public class ProductRestControllerTest {
 
     @Test
     public void test3ThatItemHasBeenAddedToShoppingCart() throws Exception {
+        MockHttpServletRequest request = new MockHttpServletRequest();
+        String origin = request.getRequestURL().toString();
         String body = "{\"id\": \"3\", \"quantity\": \"2\"}";
+
         mockMvc.perform(post("/products/addtocart")
                 .contentType(MediaType.APPLICATION_JSON_VALUE)
                 .content(body))
-                .andExpect(status().isCreated());
+                .andExpect(status().isCreated())
+                .andExpect(jsonPath("$.message", is("Item id 3 has been added to your shopping cart")))
+                .andExpect(jsonPath("$.link", is(origin + "/products/shoppingcart/1")));
 
         mockMvc.perform(get("/products/shoppingcart/1"))
                 .andExpect(status().isOk())
@@ -117,12 +123,17 @@ public class ProductRestControllerTest {
 
     @Test
     public void test6ThatItemIsRemoved() throws Exception {
+        MockHttpServletRequest request = new MockHttpServletRequest();
+        String origin = request.getRequestURL().toString();
         String body = "{\"id\": \"3\"}";
+
         mockMvc.perform(post("/products/removefromcart")
                 .contentType(MediaType.APPLICATION_JSON_VALUE)
                 .content(body))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.message", is("Book id 1 has been removed from the shopping cart")));
+                .andExpect(jsonPath("$.message", is("Book id 1 has been removed from the shopping cart")))
+                .andExpect(jsonPath("$.link", is(origin + "/products/shoppingcart")));
+        ;
 
         mockMvc.perform(get("/products/shoppingcart"))
                 .andExpect(content().contentType(contentType))
