@@ -34,6 +34,9 @@ public class Book {
     private Integer quantity;
     private Float price;
     private String imageUrl;
+    private Integer pageCount;
+    private String originalPublicationYear;
+    private Float rating;
 
     @ManyToMany
     @JoinTable(name = "book_author",
@@ -47,8 +50,15 @@ public class Book {
     private Book() {
     }
 
+    public Book(Integer pageCount, String originalPublicationYear, Float rating) {
+        this.pageCount = pageCount;
+        this.originalPublicationYear = originalPublicationYear;
+        this.rating = rating;
+    }
+
     public Book(String name, String description, String publisher, Date publishedDate,
-                Format format, Integer quantity, Float price, String imageUrl) {
+                Format format, Integer quantity, Float price, String imageUrl,
+                Integer pageCount, String originalPublicationYear, Float rating) {
         this.name = name;
         this.description = description;
         this.publisher = publisher;
@@ -57,6 +67,9 @@ public class Book {
         this.quantity = quantity;
         this.price = price;
         this.imageUrl = imageUrl;
+        this.pageCount = pageCount;
+        this.originalPublicationYear = originalPublicationYear;
+        this.rating = rating;
         verifyInStock();
     }
 
@@ -107,6 +120,18 @@ public class Book {
 
     public String getImageUrl() {
         return imageUrl;
+    }
+
+    public Integer getPageCount() {
+        return pageCount;
+    }
+
+    public String getOriginalPublicationYear() {
+        return originalPublicationYear;
+    }
+
+    public Float getRating() {
+        return rating;
     }
 
     public Boolean getInStock() {
