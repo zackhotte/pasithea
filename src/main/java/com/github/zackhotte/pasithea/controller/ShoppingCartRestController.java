@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.validation.Valid;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
@@ -79,13 +78,19 @@ public class ShoppingCartRestController {
         }
 
         Long productId = Long.parseLong(product.get("id"));
+        Validator.validateProductId(productId);
+
         Optional<ShoppingCart> targetItem = shoppingCart.stream()
                 .filter(item -> item.getBook().getId().equals(productId))
                 .findFirst();
 
         if (targetItem.isPresent()) {
-            Long cartItemId = targetItem.get().getId();
+            ShoppingCart cartItem = targetItem.get();
+            Long cartItemId = cartItem.getId();
+
+            bookRepository.getOne(productId).addQuantity(cartItem.getQuantity());
             shoppingCartRepository.delete(cartItemId);
+
             String origin = ServletUriComponentsBuilder.fromContextPath(request).toUriString();
             return ResponseEntity.ok().body(Response.ok(
                     "Product id " + productId + " has been removed from the shopping cart",

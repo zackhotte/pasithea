@@ -22,12 +22,9 @@ import org.springframework.web.context.WebApplicationContext;
 import java.nio.charset.Charset;
 
 import static org.hamcrest.Matchers.is;
-import static org.junit.Assert.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = Application.class)
@@ -164,6 +161,26 @@ public class ShoppingCartRestControllerTest {
     public void test9ThatErrorIsThrownForInvalidJsonWhenRemovingItems() throws Exception {
         checkInvalidJson("/api/shoppingcart/removefromcart", "{\"randomKey\": \"5\"}", "JSON payload is missing the product id");
         checkInvalidJson("/api/shoppingcart/removefromcart", "{\"id\": \"hello\"}", "Could not parse the 'id' data");
+    }
+
+    @Test
+    public void testAThatQuantityIsReplacedWhenRemovedFromCart() throws Exception {
+        String body = "{\"id\": \"3\", \"quantity\": \"5\"}";
+        mockMvc.perform(post("/api/shoppingcart/addtocart")
+                .contentType(MediaType.APPLICATION_JSON_VALUE)
+                .content(body))
+                .andExpect(status().isCreated());
+
+        mockMvc.perform(get("/api/products/3"))
+                .andExpect(jsonPath("$.quantity", is(82)));
+
+        mockMvc.perform(post("/api/shoppingcart/removefromcart")
+                .contentType(MediaType.APPLICATION_JSON_VALUE)
+                .content("{\"id\": \"3\"}"))
+                .andExpect(status().isOk());
+
+        mockMvc.perform(get("/api/products/3"))
+                .andExpect(jsonPath("$.quantity", is(87)));
     }
 
     private void checkInvalidJson(String url, String body, String errorMessage) throws Exception {
