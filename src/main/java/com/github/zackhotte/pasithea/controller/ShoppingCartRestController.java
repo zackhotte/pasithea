@@ -60,9 +60,9 @@ public class ShoppingCartRestController {
         ShoppingCart cartItem = shoppingCartRepository.save(new ShoppingCart(book, quantity));
 
         String origin = ServletUriComponentsBuilder.fromContextPath(request).toUriString();
-        URI uri = new URI(origin + "/products/shoppingcart/" + cartItem.getId());
+        URI uri = new URI(origin + "/api/shoppingcart/" + cartItem.getId());
         return ResponseEntity.created(uri).body(Response.ok(
-                "Item id " + bookId + " has been added to your shopping cart", uri.toString()
+                "Product id " + bookId + " has been added to your shopping cart", uri.toString()
         ));
     }
 
@@ -84,7 +84,7 @@ public class ShoppingCartRestController {
             String origin = ServletUriComponentsBuilder.fromContextPath(request).toUriString();
             return ResponseEntity.ok().body(Response.ok(
                     "Product id " + productId + " has been removed from the shopping cart",
-                    origin + "/products/shoppingcart"
+                    origin + "/api/shoppingcart"
             ));
         }
 
